@@ -1,0 +1,51 @@
+.title1 {
+  font-size: 2rem;
+  line-height: 3rem;
+}
+
+.title2 {
+  font-size: 1.25rem;
+  line-height: 1.5rem;
+}
+
+.title3 {
+  font-size: 1.5rem;
+  line-height: 1.5rem;
+}
+
+.text1 {
+  font-size: 1.5rem;
+  line-height: 2.25rem;
+}
+
+.text2 {
+  font-size: 1.25rem;
+  line-height: 1.875rem;
+}
+
+.text3 {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+.text4 {
+  font-size: 0.875rem;
+  line-height: 1.5rem;
+}
+
+.bolder {
+  font-weight: 600;
+}
+
+.bold {
+  font-weight: 500;
+}
+
+strong {
+  color: var(--brand-1);
+  font-weight: 600;
+}
+
+.alert {
+  color: var(--alert-1);
+}

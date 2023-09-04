@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Petinfo - Feed</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../../src/styles/reset.css" />
+    <link rel="stylesheet" href="../../src/styles/globalStyles.css" />
+    <link rel="stylesheet" href="../../src/styles/feed.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
+    <!-- SCRIPTS -->
+    <script type="module" src="../scripts/feed.js" defer></script>
+  </head>
+  <body>
+    <header class="header">
+      <div class="header__container">
+        <h2 class="title3 header__title bold">Petinfo</h2>
+        <nav class="user-nav__container">
+          <div class="user__action">
+            <button id="user__newpost" class="btn btn--brand btn--large text3">
+              Criar publicação
+            </button>
+            <img class="user__image" src="" alt="" />
+          </div>
+          <div class="user__logout hidden">
+            <h2 class="user__uniquename text3 bolder"></h2>
+            <button class="text4 logout__button">
+              <div class="logout__icon"></div>
+              Sair da conta
+            </button>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <main class="main">
+      <h1 class="feed__title text2 bolder">Feed</h1>
+
+      <!-- POSTS -->
+      <section class="posts">
+        <!-- Aqui serão renderizados os posts -->
+      </section>
+      <!-- Aqui o modal de criaçao de  um novo post -->
+      <dialog id="new-post-creator__modal">
+        <div id="new-post-creator__container">
+          <div>
+            <h2 class="text1 bolder">Criando novo post</h2>
+             <span class="close-modal" id="close-modal__creator">X</span>
+          </div>
+          <form  id="new-post-creator__form">
+            <label  for="post__title" > Titulo do post</label>
+            <input type="text" name="title" id="post__title" placeholder="Digite o titulo do post aqui...">
+            <label for="post__content"> Conteúdo do post</label>
+            <textarea rows="4" cols="50" type="text" name="discription" id="post__content" placeholder="desenvolva o conteudo do post aqui..."></textarea>
+            <label class="hidden" id="new-post-creator__error-feadback"></label>
+            <div>
+              <button id="button__cancel" class="btn text3  ">Cancelar</button>
+              <button id="button__publish" class="btn btn--brand text3">Publicar</button>
+            </div>
+          </form>
+        </div>
+      </dialog>
+
+      <dialog id="open-post-modal"></dialog>
+
+    </main>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+  </body>
+</html>

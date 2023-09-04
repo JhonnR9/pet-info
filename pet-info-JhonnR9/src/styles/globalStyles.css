@@ -1,0 +1,69 @@
+@import "./components/texts.css";
+@import "./components/containers.css";
+@import "./components/buttons.css";
+/*@import "./components/animations.css";*/
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap");
+
+:root {
+  /* Primary Colors */
+  --brand-1: #364fc7;
+  --brand-2: #3b56d9;
+
+  /* Gray Scale */
+  --gray-1: #212529;
+  --gray-2: #353b41;
+  --gray-3: #484f56;
+  --gray-4: #878f97;
+  --gray-5: #adb5bd;
+  --gray-6: #e9ecef;
+  --gray-7: #f0f2f4;
+  --gray-8: #f9fafb;
+  --gray-9: #ffffff;
+
+  /* Alerts */
+  --alert-1: #c83751;
+  --alert-2: #db3d5a;
+  --success-1: #087d5a;
+
+  /* Radius */
+  --defaultRadius: 0.25rem;
+}
+
+body {
+  font-family: "IBM Plex Sans", sans-serif;
+  color: var(--gray-1);
+  overflow-x: hidden;
+}
+
+button {
+  cursor: pointer;
+}
+
+input,
+textarea {
+  font-family: inherit;
+  border-radius: var(--defaultRadius);
+  border-color: transparent;
+  padding-block: 0.4rem;
+  padding-inline: 0.6rem;
+}
+
+label {
+  margin-block: 0.75rem;
+}
+
+input,
+textarea {
+  background-color: var(--gray-7);
+  border: 1px solid var(--gray-6);
+  padding-inline: 1rem;
+  margin-block: 0.5rem;
+}
+
+input:focus::placeholder {
+  color: transparent;
+}
+
+.hidden {
+  opacity: 0;
+}

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PetInfo - Login</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="./src/styles/reset.css" />
+    <link rel="stylesheet" href="./src/styles/globalStyles.css" />
+    <link rel="stylesheet" href="./src/styles/index.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
+    <!-- SCRIPTS -->
+    <script type="module" src="./src/scripts/index.js" defer></script>
+  </head>
+  <body>
+    <main class="main main--flex column-reversed">
+      <section class="info__container">
+        <h1 class="title1 bolder">Petinfo</h1>
+        <p class="title1 bolder info__highlight">
+          <strong class="title1">Amor</strong> e
+          <strong class="title1">carinho</strong> por meio do conhecimento
+        </p>
+        <p class="text3 info__text">
+          Todas as informações para melhorar a vida do seu pet em um só lugar
+        </p>
+        <img
+          class="info__image"
+          src="./src/assets/img/img-login.svg"
+          alt="imagens de animais"
+        />
+      </section>
+      <form class="form__container">
+        <h2 class="form__title title2 bold">Login</h2>
+        <fieldset class="fieldset__container">
+          <label class="text3 bold" for="Email">Email</label>
+          <input
+            name="email"
+            class="text3"
+            type="email"
+            id="Email"
+            placeholder="Digite seu email aqui"
+            required
+          />
+          <small id="wrong-email" class="wrong__credential text4 alert hidden"
+            >email incorreto</small
+          >
+          <label class="text3 bold" for="Senha">Senha</label>
+          <input
+            name="password"
+            class="text3"
+            type="password"
+            id="Senha"
+            placeholder="Digite sua senha aqui"
+            required
+          />
+          <small
+            id="wrong-password"
+            class="wrong__credential text4 alert hidden"
+            >senha incorreta</small
+          >
+        </fieldset>
+        <button id="login__submit" class="btn btn--brand text3" type="submit">
+          Acessar
+        </button>
+        <div class="login__redirect">
+          <h2 class="text4 bold">Ainda não possui conta?</h2>
+          <p class="text4 redirect__text">
+            Clicando no botão abaixo, você pode se cadastrar rapidamente
+          </p>
+        </div>
+        <button id="register__button" class="btn btn--gray text3">
+          <a href="./src/pages/register.html"></a>Cadastrar
+        </button>
+      </form>
+    </main>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+  </body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PetInfo - Cadastro</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../styles/reset.css" />
+    <link rel="stylesheet" href="../styles/globalStyles.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
+    <!-- Scripts -->
+    <script type="module" src="../scripts/register.js" defer></script>
+  </head>
+  <body>
+    <main class="main main--flex">
+      <!-- Formulário de cadastro -->
+      <form class="form__container">
+        <h2 class="form__title title2 bold">Cadastro</h2>
+        <fieldset class="fieldset__container">
+          <label class="text3 bold" for="user">Usuário</label>
+          <input
+            name="username"
+            class="text3"
+            type="text"
+            id="user"
+            placeholder="Digite seu username aqui"
+            required
+          />
+          <label class="text3 bold" for="Email">Email</label>
+          <input
+            name="email"
+            class="text3"
+            type="email"
+            id="Email"
+            placeholder="Digite seu email aqui"
+            required
+          />
+          <label class="text3 bold" for="picture">Link da foto de perfil</label>
+          <input
+            name="avatar"
+            class="text3"
+            type="text"
+            id="picture"
+            placeholder="Insira o link aqui"
+            required
+          />
+          <label class="text3 bold" for="Senha">Senha</label>
+          <input
+            name="password"
+            class="text3"
+            type="password"
+            id="Senha"
+            placeholder="Digite sua senha aqui"
+            required
+          />
+        </fieldset>
+        <button
+          id="register__submit"
+          class="btn btn--brand text3"
+          type="submit"
+        >
+          Cadastrar
+        </button>
+        <button id="redirect__button" class="btn btn--gray text3">
+          Voltar para o login
+        </button>
+      </form>
+
+      <!-- Seção lateral -->
+      <section class="info__container">
+        <h1 class="title1 bolder">Petinfo</h1>
+        <p class="title1 bolder"><strong>Ooooooba!</strong></p>
+        <p class="text3">
+          Agora vamos poder contribuir para o bem estar do seu pet por meio do
+          conhecimento
+        </p>
+        <img
+          class="info__image"
+          src="../assets/img/img-register.svg"
+          alt="imagens de animais"
+        />
+      </section>
+    </main>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+  </body>
+</html>

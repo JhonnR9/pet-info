@@ -1,0 +1,12 @@
+.redirect__text {
+  color: var(--gray-3);
+}
+
+.login__redirect {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  gap: 1.25rem;
+}
