@@ -1,0 +1,652 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Pet Info",
+    "description": "API para desenvolvimento da aplicação Pet Info que será realizada como entrega da Sprint6",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3333"
+    }
+  ],
+  "paths": {
+    "/login": {
+      "post": {
+        "description": "Rota responsável por logar um usuário ao sistema",
+        "tags": ["Rotas sem autenticação"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/login" }
+            }
+          }
+        },
+        "responses": {
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "LoginResponse": {
+                    "value": {
+                      "message": "email ou senha inválidos"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/loginResponse"
+                },
+                "examples": {
+                  "user": {
+                    "value": {
+                      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NzY5MDE3MzUsImV4cCI6MTY3NzUwNjUzNSwic3ViIjoiMWYzZjIwZmQtNTM1Yy00MWUzLWE5Y2EtODllYjVjYTExYmRmIn0.I7OiLi8OsITkJ2D_Kt4aWk_bU2bHItpJ_E6DLAw1G08"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [{}]
+      }
+    },
+    "/users/create": {
+      "post": {
+        "description": "Rota responsável por criar um novo usuário",
+        "tags": ["Rotas sem autenticação"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/createUser" }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "bad request"
+          },
+          "201": {
+            "description": "created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/userResponse"
+                },
+                "examples": {
+                  "user": {
+                    "value": {
+                      "id": "6605fcd4-2737-4feb-87e3-d4754d9d5680",
+                      "username": "Bertoldo",
+                      "email": "rafael@kenzie.com.br",
+                      "avatar": "https://i.pinimg.com/originals/27/87/5d/27875d70cf52a0a643aeda13bbb7b0cd.jpg"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [{}]
+      }
+    },
+    "/users/profile": {
+      "get": {
+        "description": "Rota responsável por buscar as informações do usuário logado",
+        "tags": ["Usuário autenticado"],
+        "responses": {
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "examples": {
+                  "response": {
+                    "value": {
+                      "message": "Usuário não encontrado, por favor, faça login e tente novamente"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/userResponse"
+                },
+                "examples": {
+                  "user": {
+                    "value": {
+                      "id": "6605fcd4-2737-4feb-87e3-d4754d9d5680",
+                      "username": "Bertoldo",
+                      "email": "rafael@kenzie.com.br",
+                      "avatar": "https://i.pinimg.com/originals/27/87/5d/27875d70cf52a0a643aeda13bbb7b0cd.jpg"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "description": "Rota responsável por atualizar as informações do usuário logado",
+        "tags": ["Usuário autenticado"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "$ref": "#/components/schemas/updateUser"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "examples": {
+                  "user": {
+                    "value": {
+                      "id": "6605fcd4-2737-4feb-87e3-d4754d9d5680",
+                      "username": "Bertoldo",
+                      "email": "rafael@mail.com",
+                      "avatar": "https://i.pinimg.com/originals/27/87/5d/27875d70cf52a0a643aeda13bbb7b0cd.png"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "examples": {
+                  "response": {
+                    "value": {
+                      "message": "Usuário não encontrado, por favor faça login e tente novamente"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "examples": {
+                  "username": {
+                    "value": {
+                      "message": "Username já cadastrado, favor informar um username que não pertença a um usuário já cadastrado"
+                    }
+                  },
+                  "email": {
+                    "value": {
+                      "message": "Email já cadastrado, favor informar um email que não pertença a um usuário já cadastrado"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "Rota responsável por deletar as informações do usuário logado",
+        "tags": ["Usuário autenticado"],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "examples": {
+                  "user": {
+                    "value": {
+                      "message": "Usuário deletado com sucesso"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "examples": {
+                  "response": {
+                    "value": {
+                      "message": "Usuário não encontrado, faça login e tente novamente"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/posts/create": {
+      "post": {
+        "description": "Rota responsável por criar um novo post, informações do usuário retiradas diretamente do token JWT",
+        "tags": ["Rotas autenticadas"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/createPost" }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "bad request"
+          },
+          "201": {
+            "description": "created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/postResponse"
+                },
+                "examples": {
+                  "user": {
+                    "value": {
+                      "id": "ee9141ab-43fb-403d-ba53-520b0b2eb31a",
+                      "title": "Castração Solidária",
+                      "content": "Estou promovendo um evento com parceria de algumas petShops e clinicas veterinárias da região de Porto Alegre e faremos a castração gratuita dos 100 primeiros pets que estiver no parque da redenção no dia 10/10/2022",
+                      "user": {
+                        "id": "190f5cad-a7b5-4f78-ab3f-30d2d947b14b",
+                        "username": "Bertoldo",
+                        "email": "rafael@kenzie.com.br",
+                        "avatar": "https://i.pinimg.com/originals/27/87/5d/27875d70cf52a0a643aeda13bbb7b0cd.jpg"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/posts": {
+      "get": {
+        "description": "Rota responsável por buscar todoso os posts",
+        "tags": ["Rotas autenticadas"],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/postResponse"
+                },
+                "examples": {
+                  "posts": {
+                    "value": [
+                      {
+                        "id": "632ddab1-2d5a-4533-9b82-a846fe12f2b2",
+                        "title": "Castração Solidária",
+                        "content": "Estou promovendo um evento com parceria de algumas petShops e clinicas veterinárias da região de Porto Alegre e faremos a castração gratuita dos 100 primeiros pets que estiver no parque da redenção no dia 10/10/2022",
+                        "user": {
+                          "id": "190f5cad-a7b5-4f78-ab3f-30d2d947b14b",
+                          "username": "Bertoldo",
+                          "email": "rafael@kenzie.com.br",
+                          "avatar": "https://i.pinimg.com/originals/27/87/5d/27875d70cf52a0a643aeda13bbb7b0cd.jpg"
+                        }
+                      },
+                      {
+                        "id": "ee9141ab-43fb-403d-ba53-520b0b2eb31a",
+                        "title": "Castração Solidária de gatos",
+                        "content": "Estou promovendo um evento com parceria de algumas petShops e clinicas veterinárias da região de Porto Alegre e faremos a castração gratuita dos 100 primeiros gatos e gatas que estiverem no parque da redenção no dia 10/10/2022",
+                        "user": {
+                          "id": "190f5cad-a7b5-4f78-ab3f-30d2d947b14b",
+                          "username": "Bertoldo",
+                          "email": "rafael@kenzie.com.br",
+                          "avatar": "https://i.pinimg.com/originals/27/87/5d/27875d70cf52a0a643aeda13bbb7b0cd.jpg"
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/posts/{post_id}": {
+      "get": {
+        "description": "Rota responsável por um post de acordo com o id informado por parâmetro",
+        "tags": ["Rotas autenticadas"],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/postResponse"
+                },
+                "examples": {
+                  "posts": {
+                    "value": {
+                      "id": "632ddab1-2d5a-4533-9b82-a846fe12f2b2",
+                      "title": "Castração Solidária",
+                      "content": "Estou promovendo um evento com parceria de algumas petShops e clinicas veterinárias da região de Porto Alegre e faremos a castração gratuita dos 100 primeiros pets que estiver no parque da redenção no dia 10/10/2022",
+                      "user": {
+                        "id": "190f5cad-a7b5-4f78-ab3f-30d2d947b14b",
+                        "username": "Bertoldo",
+                        "email": "rafael@kenzie.com.br",
+                        "avatar": "https://i.pinimg.com/originals/27/87/5d/27875d70cf52a0a643aeda13bbb7b0cd.jpg"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/posts/{id}": {
+      "patch": {
+        "description": "Rota responsável por atualizar as informações de um post",
+        "tags": ["Rotas autenticadas"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "$ref": "#/components/schemas/updatePost"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "examples": {
+                  "user": {
+                    "value": {
+                      "id": "ee9141ab-43fb-403d-ba53-520b0b2eb31a",
+                      "title": "Castração Solidária de gatos",
+                      "content": "Estou promovendo um evento com parceria de algumas petShops e clinicas veterinárias da região de Porto Alegre e faremos a castração gratuita dos 100 primeiros gatos e gatas que estiverem no parque da redenção no dia 10/10/2022",
+                      "user": {
+                        "id": "190f5cad-a7b5-4f78-ab3f-30d2d947b14b",
+                        "username": "Bertoldo",
+                        "email": "rafael@kenzie.com.br",
+                        "avatar": "https://i.pinimg.com/originals/27/87/5d/27875d70cf52a0a643aeda13bbb7b0cd.jpg"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "examples": {
+                  "response": {
+                    "value": {
+                      "message": "Post não encontrado, por favor verifique o id do post informado"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "examples": {
+                  "response": {
+                    "value": {
+                      "message": "Apenas o usuário que criou o post pode editá-lo"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "Rota responsável por deletar um post",
+        "tags": ["Rotas autenticadas"],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "examples": {
+                  "user": {
+                    "value": {
+                      "message": "Post deletado com sucesso"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "examples": {
+                  "response": {
+                    "value": {
+                      "message": "Post não encontrado, por favor verifique o ID informado no parametro da requisição"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "examples": {
+                  "response": {
+                    "value": {
+                      "message": "Apenas o usuário que criou o post pode deletá-lo"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "login": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        }
+      },
+      "loginResponse": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string"
+          }
+        }
+      },
+      "createUser": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "avatar": {
+            "type": "string"
+          }
+        }
+      },
+      "userResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "username": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "avatar": {
+            "type": "string"
+          }
+        }
+      },
+      "updateUser": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "avatar": {
+            "type": "string"
+          }
+        }
+      },
+      "createPost": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "content": {
+            "type": "string"
+          }
+        }
+      },
+      "postResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "content": {
+            "type": "string"
+          },
+          "user": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "username": {
+                "type": "string"
+              },
+              "email": {
+                "type": "string"
+              },
+              "avatar": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "updatePost": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "content": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "security": [
+    {
+      "JWT": []
+    }
+  ]
+}
